@@ -1,0 +1,3 @@
+export const EVENTS = {
+  BASKET_UPDATED: 'BASKET_UPDATED',
+};
