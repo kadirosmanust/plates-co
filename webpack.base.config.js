@@ -14,17 +14,20 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.scss$/,
         use: [
-          'style-loader',
-          'css-loader',
+          'style-loader', // Injects styles into the DOM
           {
-            loader: 'postcss-loader',
+            loader: 'css-loader',
             options: {
-              postcssOptions: {
-                plugins: [['postcss-preset-env']],
-              },
+              modules: true, // Enable CSS modules
+              importLoaders: 1, // Number of loaders applied before CSS loader
             },
           },
+          'sass-loader', // Compiles Sass to CSS
         ],
       },
     ],
