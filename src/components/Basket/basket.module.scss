@@ -1,0 +1,89 @@
+.basketContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    width: 200px;
+    background-color: #f9f9f9;
+    border:     1px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+}
+
+.basketTotal{
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.basketHoverMenu{
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: "100%";
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    padding: 12px;
+}
+
+.productItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    gap: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover{
+        background-color: #f0f0f0;
+
+    }
+
+}
+
+.productPrice{
+    font-size: 0.8rem;
+    color: #666;
+    margin: 0;
+}
+
+.productCount{
+    font-size: 0.8rem;
+    color: #666;
+    margin: 0;
+    background-color: #f0f0f0;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.productName{
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.removeButton{
+    padding: 4px;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover{
+        background-color: #e0e0e0;
+    }
+}
+
+.deliveryFeeInfoText{
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #333;
+    margin: 0;
+    text-align: center;
+    display: none;
+}

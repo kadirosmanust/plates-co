@@ -6,18 +6,35 @@ import { calculateDeliveryCharge } from './logic/delivery';
 import { RED_PLATE_CAMPAIGN } from './logic/campaigns';
 import { floorAndFix } from './utils/math';
 
+export const addActiveCampaign = campaign => {
+  const state = getState();
+  const newCampaigns = [...state.activeCampaigns];
+  newCampaigns.push(campaign);
+  setState('activeCampaigns', newCampaigns);
+  publish(EVENTS.CAMPAIGN_APPLIED, campaign);
+};
+
 export const calculateTotal = () => {
   const state = getState();
 
-  let totalCost = RED_PLATE_CAMPAIGN.checkAndCalculateTotal({
+  const { totalCost, isApplied } = RED_PLATE_CAMPAIGN.checkAndCalculateTotal({
     products: state.basket,
   });
 
+  if (totalCost === 0) {
+    setState('total', 0);
+
+    return;
+  }
   const deliveryCharge = calculateDeliveryCharge(totalCost);
-  totalCost += deliveryCharge;
-  const flooredTotal = floorAndFix(totalCost);
+  setState('deliveryFee', deliveryCharge);
+  const newtotalCost = totalCost + deliveryCharge;
+  const flooredTotal = floorAndFix(newtotalCost);
 
   setState('total', flooredTotal);
+  if (isApplied) {
+    addActiveCampaign(RED_PLATE_CAMPAIGN.id);
+  }
 };
 
 export const addProduct = productCode => {
@@ -27,5 +44,24 @@ export const addProduct = productCode => {
   newBasket.push(productCode);
   setState('basket', newBasket);
   calculateTotal();
-  publish(EVENTS.BASKET_UPDATED, state);
+  publish(EVENTS.PRODUCT_ADDED, {
+    productCode,
+    total: state.total,
+    deliveryFee: state.deliveryFee,
+  });
+};
+
+export const removeProduct = productCode => {
+  const state = getState();
+  const productIndex = state.basket.findIndex(item => item !== productCode);
+  const newBasket = [...state.basket];
+  newBasket.splice(productIndex, 1);
+  setState('basket', newBasket);
+  calculateTotal();
+
+  publish(EVENTS.PRODUCT_REMOVED, {
+    productCode,
+    total: state.total,
+    deliveryFee: state.deliveryFee,
+  });
 };

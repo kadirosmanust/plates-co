@@ -9,3 +9,6 @@ export const PRODUCTS_KEYS = Object.freeze({
   G01: 'G01',
   B01: 'B01',
 });
+
+export const DELIVERY_FEE_TEXT =
+  'Orders under $50 cost $4.95. For orders under $90, delivery costs $2.95. Orders of $90 or more have free delivery.';
