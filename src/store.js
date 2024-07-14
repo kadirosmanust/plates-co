@@ -1,6 +1,8 @@
 const initialState = {
   basket: [],
   total: 0,
+  activeCampaigns: [],
+  deliveryFee: 0,
 };
 
 const state = { ...initialState };
