@@ -9,6 +9,7 @@ import * as styles from './basket.module.scss';
 const Basket = ({ parent }) => {
   const basketHoverItems = {};
   const basketContainer = document.createElement('div');
+  basketContainer.dataset.testid = 'basket';
   const basketTotal = document.createElement('p');
   const deliveryFeeInfo = document.createElement('p');
   deliveryFeeInfo.textContent = 'Delivery fee: $0.00';

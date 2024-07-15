@@ -1,3 +1,4 @@
+import { EVENTS } from '../../constants/pubSubEvents';
 import { subscribe } from '../../pubsub';
 import rootElement from '../../utils/rootElement';
 
@@ -12,6 +13,7 @@ const Notification = () => {
     const notification = document.createElement('div');
     notification.className = `${styles.notification}`;
     notification.textContent = message;
+    notification.dataset.testid = 'notification';
 
     notificationContainer.appendChild(notification);
 
@@ -20,7 +22,7 @@ const Notification = () => {
     }, 3000);
   };
 
-  subscribe('NOTIFICATION', addNotification);
+  subscribe(EVENTS.NOTIFICATION, addNotification);
 
   root.appendChild(notificationContainer);
 };

@@ -18,6 +18,7 @@ const Product = ({ productInfo, parent }) => {
   productName.textContent = productInfo.name;
   productPrice.textContent = `$${productInfo.price}`;
   addToBasketButton.textContent = 'Add to basket';
+  addToBasketButton.dataset.testid = `add-to-basket-${productInfo.code}`;
 
   productInfoContainer.appendChild(productName);
   productInfoContainer.appendChild(productPrice);

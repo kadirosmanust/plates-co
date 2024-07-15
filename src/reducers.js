@@ -32,8 +32,17 @@ export const calculateTotal = () => {
   const flooredTotal = floorAndFix(newtotalCost);
 
   setState('total', flooredTotal);
-  if (isApplied) {
+
+  if (isApplied && !state.activeCampaigns.includes(RED_PLATE_CAMPAIGN.id)) {
     addActiveCampaign(RED_PLATE_CAMPAIGN.id);
+  }
+
+  if (!isApplied && state.activeCampaigns.includes(RED_PLATE_CAMPAIGN.id)) {
+    const newCampaigns = state.activeCampaigns.filter(
+      item => item !== RED_PLATE_CAMPAIGN.id,
+    );
+    setState('activeCampaigns', newCampaigns);
+    publish(EVENTS.CAMPAIGN_REMOVED, RED_PLATE_CAMPAIGN);
   }
 };
 
@@ -54,10 +63,12 @@ export const addProduct = productCode => {
 
 export const removeProduct = productCode => {
   const state = getState();
-  const productIndex = state.basket.findIndex(item => item !== productCode);
+
+  const productIndex = state.basket.findIndex(item => item === productCode);
   const newBasket = [...state.basket];
   newBasket.splice(productIndex, 1);
   setState('basket', newBasket);
+
   calculateTotal();
 
   publish(EVENTS.PRODUCT_REMOVED, {

@@ -50,7 +50,7 @@ const Campaigns = () => {
 
   subscribe(EVENTS.CAMPAIGN_REMOVED, campaign => {
     const campaignElement = campaignsElements.find(
-      element => element.id === campaign,
+      element => element.id === campaign.id,
     ).element;
 
     campaignElement.classList.remove(styles.applied);

@@ -7,6 +7,7 @@ const Header = () => {
 
   const header = document.createElement('header');
   header.className = styles.header;
+  header.dataset.testid = 'header';
 
   const title = document.createElement('h1');
   title.className = styles.title;

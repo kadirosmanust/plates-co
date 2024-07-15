@@ -7,6 +7,7 @@ import * as styles from './productList.module.scss';
 const ProductList = () => {
   const root = rootElement();
   const productListContainer = document.createElement('div');
+  productListContainer.dataset.testid = 'product-list';
   const productListTitle = document.createElement('h2');
   const container = document.createElement('div');
   container.className = styles.container;
