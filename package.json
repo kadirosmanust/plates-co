@@ -13,7 +13,8 @@
     "test-coverage": "npm run test -- --coverage",
     "test-ci": "npm run test-coverage -- --silent --ci --bail",
     "test-watch": "npm run test -- --watch",
-    "test-changed": "npm run test-coverage -- --changedSince=origin/master --silent"
+    "test-changed": "npm run test-coverage -- --changedSince=origin/master --silent",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -55,7 +56,8 @@
     "postcss-loader": "^8.1.1",
     "postcss-preset-env": "^9.6.0",
     "semver": "7.3.7",
-    "webpack-dev-server": "^5.0.4"
+    "webpack-dev-server": "^5.0.4",
+    "husky": "^8.0.0"
   },
   "browserslist": {
     "production": [
