@@ -49,6 +49,7 @@ export const addProduct = productCode => {
     total: state.total,
     deliveryFee: state.deliveryFee,
   });
+  publish(EVENTS.NOTIFICATION, 'Product added to basket');
 };
 
 export const removeProduct = productCode => {

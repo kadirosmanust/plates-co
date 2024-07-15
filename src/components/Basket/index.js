@@ -102,13 +102,18 @@ const Basket = ({ parent }) => {
       return;
     }
 
-    deliveryFeeInfo.textContent = `Delivery fee: $${deliveryFee}`;
-    deliveryFeeInfo.style.display = 'block';
+    if (total > 0) {
+      deliveryFeeInfo.textContent = `Delivery fee: $${deliveryFee}`;
+      deliveryFeeInfo.style.display = 'block';
+    } else {
+      deliveryFeeInfo.style.display = 'none';
+    }
 
     basketHoverItems[productCode].count -= 1;
 
     if (basketHoverItems[productCode].count === 0) {
       basketHoverItems[productCode].elements.productItemContainer.remove();
+      delete basketHoverItems[productCode];
       if (Object.keys(basketHoverItems).length === 0) {
         basketHoverMenu.textContent = 'Basket is empty';
       }
